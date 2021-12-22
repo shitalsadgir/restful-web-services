@@ -1,6 +1,8 @@
 package com.in28minuterest.webservices.restfulwebservices.user;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class User {
     private Integer id;
@@ -8,13 +10,25 @@ public class User {
     private Date BirthDate;
     private Integer age;
     private String city;
+    private List<Posts> posts=new ArrayList<>();
 
-    public User(Integer id, String name, Date birthDate, Integer age, String city) {
+
+
+    public User(Integer id, String name, Date birthDate, Integer age, String city, List<Posts> posts) {
         this.id = id;
         this.name = name;
         BirthDate = birthDate;
         this.age = age;
         this.city = city;
+        this.posts = posts;
+    }
+
+    public List<Posts> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Posts> posts) {
+        this.posts = posts;
     }
 
     public Integer getId() {
@@ -65,6 +79,7 @@ public class User {
                 ", BirthDate=" + BirthDate +
                 ", age=" + age +
                 ", city='" + city + '\'' +
+                ", posts=" + posts +
                 '}';
     }
 }
