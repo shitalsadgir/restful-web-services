@@ -1,10 +1,15 @@
 package com.in28minuterest.webservices.restfulwebservices.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Locale;
 
 @RestController
 public class HelloworldController {
-
+    @Autowired
+private MessageSource messageSource;
     //Get method two types
     //@RequestMapping(method = RequestMethod.GET,path = "hello-world")
     @GetMapping(path = "hello-world")
@@ -21,4 +26,13 @@ public class HelloworldController {
     public HelloWorldBean helloworldBeanPathVar(@PathVariable String name){
         return new HelloWorldBean(String.format("Hello Shital, %s",name));
     }
+
+
+    @GetMapping(path = "hello-world-international")
+    public String helloworldInternational(@RequestHeader (name = "Accept-Language", required = false)Locale locale){
+
+        return messageSource.getMessage("good.morning.message",null,locale);
+    }
+
+
 }
